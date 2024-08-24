@@ -8,6 +8,6 @@
 
 ## USAGE 
 
-step 1 -> Run ./flex.sh in terminal ( make sure you are in the same directory where the file is present )
-step 2 -> Enter the movie name to search torrents
-step 3 -> select the correct movie torrent
+* step 1 -> Run ./flex.sh in terminal ( make sure you are in the same directory where the file is present )
+* step 2 -> Enter the movie name to search torrents
+* step 3 -> select the correct movie torrent
