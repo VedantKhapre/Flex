@@ -30,3 +30,17 @@ if ! [[ "$selection" =~ ^[0-9]+$ ]] || [ "$selection" -le 0 ] || [ "$selection" 
     echo "Invalid selection."
     exit 1
 fi
+
+selected_torrent=$(echo "$torrents" | sed -n "${selection}p")
+echo "Selected torrent: $selected_torrent"
+torrent_page=$(curl -s "https://tprbay.xyz/$selected_torrent")
+magnet=$(echo "$torrent_page" | grep -Po 'magnet:\?xt=urn:btih:[a-zA-Z0-9]+' | head -n 1)
+
+if [ -z "$magnet" ]; then
+    echo "Failed to retrieve magnet link for: $selected_torrent"
+    exit 1
+fi
+echo "Found magnet link: $magnet"
+
+echo "Streaming with WebTorrent..."
+webtorrent "$magnet"
